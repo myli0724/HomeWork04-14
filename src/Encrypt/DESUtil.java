@@ -11,7 +11,7 @@ import java.security.Key;
 import java.util.Base64;
 
 /*
-DES加密:
+DES加密算法:
 (String desFile) DESUtil.encryptFile(pwd,srcFile,desFile);
 (String desFile) DESUtil.decryptFile(pwd,srcFile,DesFile);
  */
