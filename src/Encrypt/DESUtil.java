@@ -39,28 +39,28 @@ public class DESUtil {
         return null;
     }
 
-    /*DES加密字符串*/
-    public static String encrypt(String pwd, String data){
-        if(pwd == null||pwd.length()<8){
-            throw new RuntimeException("key 长度不能小于八位！");
-        }
-        if(data == null){
-            return null;
-        }
-        try{
-            Key secretKey = generateKey(pwd);
-            Cipher cipher = Cipher.getInstance(CIPER_ALOGRITHM);
-            IvParameterSpec iv = new IvParameterSpec(IV_PARAMETER.getBytes(CHARSET));
-            cipher.init(Cipher.ENCRYPT_MODE,secretKey,iv);
-            byte[] bytes = cipher.doFinal(data.getBytes(CHARSET));
-
-            return new String(Base64.getEncoder().encode(bytes));
-        } catch (Exception e){
-            System.out.println(" encrypt the string failed!");
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    /*DES加密字符串*/
+//    public static String encrypt(String pwd, String data){
+//        if(pwd == null||pwd.length()<8){
+//            throw new RuntimeException("key 长度不能小于八位！");
+//        }
+//        if(data == null){
+//            return null;
+//        }
+//        try{
+//            Key secretKey = generateKey(pwd);
+//            Cipher cipher = Cipher.getInstance(CIPER_ALOGRITHM);
+//            IvParameterSpec iv = new IvParameterSpec(IV_PARAMETER.getBytes(CHARSET));
+//            cipher.init(Cipher.ENCRYPT_MODE,secretKey,iv);
+//            byte[] bytes = cipher.doFinal(data.getBytes(CHARSET));
+//
+//            return new String(Base64.getEncoder().encode(bytes));
+//        } catch (Exception e){
+//            System.out.println(" encrypt the string failed!");
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
     /*DES加密文件*/
     public static String encryptFile(String pwd,String srcFile,String desFile){
         if(pwd==null||pwd.length()<8){
