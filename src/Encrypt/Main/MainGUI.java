@@ -1,4 +1,7 @@
-package Encrypt;
+package Encrypt.Main;
+import Encrypt.Utils.Encryptor;
+import Encrypt.Utils.zipCompress;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +25,7 @@ public class MainGUI extends JFrame {
     private Container container = getContentPane();
     private JLabel fileurlLable = new JLabel("请选择文件或者手动输入文件路径:");
     private JTextField fileurl = new JTextField();
-    private JLabel pwdLable = new JLabel("请输入密码(英文字母或数字，八位以上！):");
+    private JLabel pwdLable = new JLabel("请输入密码,英文字母或数字八位以上:");
     private JTextField pwd = new JTextField();
     private JLabel result = new JLabel("请选择文件，可点击-说明-按钮查看详细步骤");
     private  JButton selectBtn = new JButton("选择文件");
@@ -35,7 +38,7 @@ public class MainGUI extends JFrame {
     private boolean backup = false;
 
     public MainGUI(){
-        setTitle("加解密文件");
+        setTitle("多线程版加解密文件");
         setBounds(600,200,700,300);
         container.setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,7 +89,7 @@ public class MainGUI extends JFrame {
                         fileurl.setText(file.getAbsolutePath());
                         result.setText("已选择：" + jfc.getSelectedFile().getName());
                 }catch (Exception e1){
-                    JOptionPane.showMessageDialog(null,"未选择文件"+e1);
+                    JOptionPane.showMessageDialog(null,"未选择文件或选择失败，请重新尝试！\n"+e1);
                 }
             }
         });
@@ -112,6 +115,7 @@ public class MainGUI extends JFrame {
                                              else {
                                                  if(pwd.getText().trim().length()<8){
                                                      JOptionPane.showMessageDialog(null,"密码必须八位以上！");
+                                                     return;
                                                  }
                                                  try {
                                                      //  Block of code to try
@@ -131,7 +135,7 @@ public class MainGUI extends JFrame {
 
                                                  } catch (Exception exception) {
                                                      //  Block of code to handle errors
-                                                     JOptionPane.showMessageDialog(null, "所选择文件不存在或者打开失败！"+exception);
+                                                     JOptionPane.showMessageDialog(null, "所选择文件不存在或者打开失败！请重新选择合法路径！\n"+exception);
                                                  }
                                              }
                                          }
@@ -147,6 +151,7 @@ public class MainGUI extends JFrame {
                 else {
                     if(pwd.getText().trim().length()<8){
                         JOptionPane.showMessageDialog(null,"密码必须八位以上！");
+                        return;
                     }
                     int key = Integer.parseInt(pwd.getText());
                     try {
@@ -156,7 +161,7 @@ public class MainGUI extends JFrame {
 
                     } catch (Exception exception) {
                         //  Block of code to handle errors
-                        JOptionPane.showMessageDialog(null, "所选择文件不存在或者并非加密文件,打开失败！！"+exception);
+                        JOptionPane.showMessageDialog(null, "所选择文件不存在或者打开失败！请重新选择合法路径！\n"+exception);
                     }
                 }
             }
@@ -179,7 +184,7 @@ public class MainGUI extends JFrame {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(null, "网络编程作业二\n可以对文件数据进行加解密，采用了Java的swing来创建交互界面;\n"+msg+"\n\n关于：\n网络201张进华\nemail:2006200014@e.gzhu.edu.cn\nGithub:\nhttps://github.com/myli0724/HomeWork04-14");
+                        JOptionPane.showMessageDialog(null, "网络编程作业四\n可以多线程对单个文件数据或者整个文件夹文件递归进行加解密，采用了Java的swing来创建交互界面;\n"+msg+"\n\n关于：\n网络201张进华\nemail:2006200014@e.gzhu.edu.cn\nGithub:\nhttps://github.com/myli0724/HomeWork04-14");
                     }
                 }
         );

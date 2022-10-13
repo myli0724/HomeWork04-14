@@ -1,4 +1,4 @@
-package Encrypt;
+package Encrypt.Utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -34,9 +34,8 @@ public class DESUtil {
             return keyFactory.generateSecret(dks);
         } catch (Exception e){
             System.out.println("generateKey failed!");
-            e.printStackTrace();
+            throw new RuntimeException("generateKey failed!\n"+e);
         }
-        return null;
     }
 
 //    /*DES加密字符串*/
@@ -84,9 +83,8 @@ public class DESUtil {
             return desFile;
         }catch (Exception e){
             System.out.println("encryptFile failed!");
-            e.printStackTrace();
+            throw new RuntimeException("encryptFile failed!\n"+e);
         }
-        return null;
     }
 
     /*DES-解密*/
@@ -117,8 +115,7 @@ public class DESUtil {
             return des;
         }catch (Exception e){
             System.out.println("decryptFile failed!");
-            e.printStackTrace();
+            throw new RuntimeException("encryptFile failed!\n"+e);
         }
-        return null;
     }
 }

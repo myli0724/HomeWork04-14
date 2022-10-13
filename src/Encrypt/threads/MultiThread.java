@@ -1,7 +1,8 @@
-package Encrypt;
+package Encrypt.threads;
+
+import Encrypt.Utils.DESUtil;
 
 import java.io.File;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /*
@@ -36,6 +37,7 @@ public class MultiThread {
                 } catch (InterruptedException e) {
                     System.out.println("多线程处理文件失败！");
                     e.printStackTrace();
+                    throw new RuntimeException("多线程处理文件失败！\n"+e);
                 }
             }
         };
@@ -50,7 +52,7 @@ public class MultiThread {
             while (!queue.isEmpty()) {
                 try {
                     String file = queue.take();
-                    String des = file.substring(0,file.lastIndexOf(".")-3)+file.substring(file.lastIndexOf("."));
+                    String des = file.substring(0,file.lastIndexOf(".")-4)+file.substring(file.lastIndexOf("."));
                     DESUtil.decryptFile(pwd,file,des);
                     System.out.println("解密了文件:"+file);
                     File file1 = new File(file);
@@ -58,6 +60,7 @@ public class MultiThread {
                 } catch (InterruptedException e) {
                     System.out.println("多线程处理文件失败！");
                     e.printStackTrace();
+                    throw new RuntimeException("多线程处理文件失败！\n"+e);
                 }
             }
         };

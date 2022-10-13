@@ -1,4 +1,6 @@
-package Encrypt;
+package Encrypt.Main;
+
+import Encrypt.Utils.Encryptor;
 
 public class Test {
     public static void main(String[] args) {

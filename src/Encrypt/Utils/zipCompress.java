@@ -1,4 +1,4 @@
-package Encrypt;
+package Encrypt.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
