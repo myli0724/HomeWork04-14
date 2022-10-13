@@ -23,6 +23,7 @@ public class Encryptor {
     }
 
 
+    /*递归遍历文件夹，将全部文件的路径存入waiting的阻塞队列里，再由MultiThread的消费者多线程模型由队列里取出进行多线程处理；*/
     private static void findFolder(String src){
         try {
 
